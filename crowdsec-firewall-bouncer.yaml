@@ -1,0 +1,22 @@
+api_url: http://127.0.0.1:8080/
+api_key: __CROWDSEC_FIREWALL_BOUNCER_KEY__
+insecure_skip_verify: false
+user: root
+grp: root
+mode: iptables
+iptables:
+  ipv6: true
+  update_set: true
+  input_chain: INPUT
+  forward_chain: FORWARD
+  deny_action: DROP
+update_frequency: 10s
+denied_retain_duration: 0s
+daemonize: false
+log_mode: stdout
+white_lists:
+  - ip: 127.0.0.1
+  - ip: ::1
+  - cidr: 192.168.0.0/16
+whitelists_files:
+  - /etc/crowdsec/whitelists.d/local-lan.yaml
